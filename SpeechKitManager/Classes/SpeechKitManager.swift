@@ -76,7 +76,7 @@ open class SpeechKitManager:NSObject {
         
         recognitionBufferRequest = SFSpeechAudioBufferRecognitionRequest()
         
-        guard let inputNode = audioEngine.inputNode else { fatalError("Audio engine has no input node") }
+        let inputNode = audioEngine.inputNode
         guard let recognitionRequest = recognitionBufferRequest else { fatalError("Unable to created a SFSpeechAudioBufferRecognitionRequest object") }
         
         // Configure request so that results are returned before audio recording is finished
@@ -111,7 +111,7 @@ open class SpeechKitManager:NSObject {
     
     open func stop(){
         audioEngine.stop()
-        audioEngine.inputNode?.removeTap(onBus: 0)
+        audioEngine.inputNode.removeTap(onBus: 0)
         
         recognitionBufferRequest = nil
         recognitionTask = nil
